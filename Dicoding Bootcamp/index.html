@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Dicoding</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f3f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 48px;
+      font-weight: bold;
+      color: #2d3748;
+      margin-bottom: 20px;
+      letter-spacing: -2px;
+    }
+
+    .g-box {
+      background-color: #2d3748;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .login-box {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      width: 350px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #4a5568;
+    }
+
+    form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #1a202c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2d3748;
+    }
+
+    #popup {
+      display: none;
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 10px;
+      border: 1px solid #f5c6cb;
+      margin-top: 10px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">dicodin<span class="g-box">g</span></div>
+    <div class="login-box">
+      <form id="loginForm">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="admin@dicoding.com" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="**********" required />
+
+        <button type="submit">LOGIN</button>
+      </form>
+      <div id="popup">Email atau password salah!</div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const loginFormElement = document.getElementById('loginForm');
+      const inputEmailElement = document.getElementById('email');
+      const inputPasswordElement = document.getElementById('password');
+      const popupElement = document.getElementById('popup');
+
+      const expectedEmail = "admin@dicoding.com";
+      const expectedPassword = "dicoding123";
+
+      loginFormElement.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const email = inputEmailElement.value;
+        const password = inputPasswordElement.value;
+
+        if (email === expectedEmail && password === expectedPassword) {
+          goToHome();
+        } else {
+          showPopUp();
+        }
+      });
+
+      function goToHome() {
+        alert("Login berhasil! Menuju halaman utama...");
+        location.href = "scoreboard.html"; // window.location.href = "home.html"; // Uncomment jika ingin redirect -->
+      }
+
+      function showPopUp() {
+        popupElement.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>

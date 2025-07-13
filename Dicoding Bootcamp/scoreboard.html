@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Scoreboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1f3244;
+      color: white;
+    }
+
+    header {
+      background-color: #17cfd4;
+      padding: 20px;
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    .scoreboard {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 40px 20px;
+      flex-wrap: wrap;
+    }
+
+    .team {
+      background-color: #2b3a4b;
+      padding: 30px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+    }
+
+    .team-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .change-name {
+      font-size: 14px;
+      background-color: #4a6175;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .score {
+      font-size: 100px;
+      margin: 20px 0;
+    }
+
+    .controls button {
+      font-size: 24px;
+      width: 60px;
+      height: 50px;
+      margin: 0 5px;
+      background-color: #cbe7f1;
+      color: #1f3244;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .settings-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #17cfd4;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    .settings-icon::before {
+      content: "⚙️";
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    Scoreboard
+    <span class="settings-icon"></span>
+  </header>
+
+  <div class="scoreboard">
+    <div class="team" id="team1">
+      <div class="team-name" id="team1-name">Bananaland</div>
+      <button class="change-name" onclick="changeTeamName('team1')">Change name...</button>
+      <div class="score" id="score1">11</div>
+      <div class="controls">
+        <button onclick="updateScore('score1', 1)">+</button>
+        <button onclick="updateScore('score1', -1)">−</button>
+      </div>
+    </div>
+
+    <div class="team" id="team2">
+      <div class="team-name" id="team2-name">Oranges Unite!</div>
+      <button class="change-name" onclick="changeTeamName('team2')">Change name...</button>
+      <div class="score" id="score2">23</div>
+      <div class="controls">
+        <button onclick="updateScore('score2', 1)">+</button>
+        <button onclick="updateScore('score2', -1)">−</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateScore(scoreId, delta) {
+      const scoreElement = document.getElementById(scoreId);
+      let score = parseInt(scoreElement.textContent);
+      score = Math.max(0, score + delta);
+      scoreElement.textContent = score;
+    }
+
+    function changeTeamName(teamId) {
+      const newName = prompt("Enter new team name:");
+      if (newName) {
+        document.getElementById(`${teamId}-name`).textContent = newName;
+      }
+    }
+  </script>
+</body>
+</html>
